@@ -6,7 +6,7 @@
 /*   By: agutierr <agutierr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 19:39:36 by agutierr          #+#    #+#             */
-/*   Updated: 2021/06/28 21:09:57 by agutierr         ###   ########.fr       */
+/*   Updated: 2021/06/28 22:48:22 by agutierr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@
 # include <fcntl.h>
 # include "../get_next_line/get_next_line.h"
 # include "utils.h"
-
-typedef struct		s_mapi
-{
-	int				**worldmap;
-}					t_mapi;
 
 typedef struct		s_config
 {

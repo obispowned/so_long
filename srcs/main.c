@@ -6,7 +6,7 @@
 /*   By: agutierr <agutierr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 19:08:00 by agutierr          #+#    #+#             */
-/*   Updated: 2021/06/28 22:33:57 by agutierr         ###   ########.fr       */
+/*   Updated: 2021/06/28 22:58:08 by agutierr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_config		load_file(char *file)
 			config.max_rows = ft_strlen(line);
 		kill(line);
 	}
-	kill(line);
+	//kill(line);
 	close(fd);
 	return (config);
 }
