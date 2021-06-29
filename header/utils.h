@@ -6,7 +6,7 @@
 /*   By: agutierr <agutierr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 12:01:22 by agutierr          #+#    #+#             */
-/*   Updated: 2020/12/19 08:37:27 by agutierr         ###   ########.fr       */
+/*   Updated: 2021/06/29 17:07:33 by agutierr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ void			kill(char *str);
 void			double_kill(char **str);
 void			ace(char *str, ...);
 void			print_err(char *str);
-void			ft_putchar(char *str);
+void			ft_putstr(char *str);
+void			ft_putchar(char c);
+void			print_matrix(int **str, int lines, int rows);
 int				white_spaces(char c);
 
 #endif

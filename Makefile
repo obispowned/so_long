@@ -3,7 +3,11 @@ NAME			= 	so_long
 
 SRCS			=	get_next_line/get_next_line.c\
 					srcs/main.c\
+					srcs/check_err.c\
+					srcs/map.c\
+					srcs/process.c\
 					utils/ft_split.c\
+					utils/printer.c\
 					utils/ft_strdup.c\
 					utils/ft_strjoin_char.c\
 					utils/ft_strlen.c\

@@ -6,7 +6,7 @@
 /*   By: agutierr <agutierr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 11:42:52 by agutierr          #+#    #+#             */
-/*   Updated: 2020/12/18 11:44:49 by agutierr         ###   ########.fr       */
+/*   Updated: 2021/06/29 16:48:58 by agutierr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char			*ft_strjoint(char *str, char c)
 	}
 	final[i] = c;
 	final[i + 1] = '\0';
-	free(str);
+	//free(str);
 	return (final);
 }
 
