@@ -36,7 +36,7 @@ endif
 
 #############################
 
-FLAGS			= -g
+FLAGS			= -g -Wall -Werror -Wextra
 
 GCC 			= gcc
 

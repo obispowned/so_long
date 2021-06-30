@@ -6,7 +6,7 @@
 /*   By: agutierr <agutierr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 17:41:35 by agutierr          #+#    #+#             */
-/*   Updated: 2021/06/29 19:34:48 by agutierr         ###   ########.fr       */
+/*   Updated: 2021/06/30 21:23:11 by agutierr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_config		load_file(char *file)
 		print_err("Fallo al intentar abrir el archivooo.");
 	while (((ret = get_next_line(fd, &line)) > 0))
 	{
-		if (line)
+  		if (line)
 		{
 			check_errors(line);
 			config.max_lines++;
@@ -40,15 +40,12 @@ t_config		load_file(char *file)
 	return (config);
 }
 
-t_config		file_procesator(char *file, int argc)
+t_config		file_procesator(char *file)
 {
 	t_config	config;
 
 	check_argv(file); // .ber
 	config = load_file(file); //open, max lines, max rows y check que solo haya 01CEP
 	config.mapa = read_map(file, &config); // leer y guardar mapa en int *
-
-	/*if (config.player_begin[0] == 0 && config.player_begin[1] == 0)
-		print_err("Este mapa no puede ser usado sin un jugador");*/
 	return (config);
 }

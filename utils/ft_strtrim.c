@@ -6,17 +6,17 @@
 /*   By: agutierr <agutierr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 11:27:55 by agutierr          #+#    #+#             */
-/*   Updated: 2020/12/18 11:28:20 by agutierr         ###   ########.fr       */
+/*   Updated: 2021/06/30 20:17:22 by agutierr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/utils.h"
 
-static	char	*ft_substr2(char *s, unsigned int start, size_t len)
+static	char	*ft_substr2(char *s, int start, int len)
 {
-	size_t		i;
+	int		i;
 	char		*result;
-	size_t		size;
+	int		size;
 
 	if (!s)
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: agutierr <agutierr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 19:39:36 by agutierr          #+#    #+#             */
-/*   Updated: 2021/06/29 19:59:47 by agutierr         ###   ########.fr       */
+/*   Updated: 2021/06/30 21:11:19 by agutierr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@
 # include "../get_next_line/get_next_line.h"
 # include "utils.h"
 
+typedef struct		s_items
+{
+	int				id;
+	int				x;
+	int				y;
+}					t_item;
+
 typedef struct		s_config
 {
 	int				flag_e;
@@ -32,14 +39,16 @@ typedef struct		s_config
 	int				game_player[2];
 	int				game_win[2];
 	int				game_object[2];
+	t_item			**item;
 }					t_config;
 
 /*                 process.c                       */
 	t_config		load_file(char *file);
-	t_config		file_procesator(char *file, int argc);
+	t_config		file_procesator(char *file);
 
 /*                 map.c                           */
-	char			**read_map2(int fd, t_config *config, int count_sprites);
+	void			only_one_p_e(t_config *config, char c, int i, int j);
+	char			**read_map2(int fd, t_config *config);
 	int				**parserico(char **map, t_config *config);
 	int				**read_map(char *file, t_config *config);
 	void			searchmap(t_config *config, char **map);
