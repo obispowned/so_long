@@ -6,7 +6,7 @@
 /*   By: agutierr <agutierr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 19:08:00 by agutierr          #+#    #+#             */
-/*   Updated: 2021/06/30 21:29:22 by agutierr         ###   ########.fr       */
+/*   Updated: 2021/07/01 21:15:20 by agutierr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int				chars_in_str(char *str, char c)
 int				main(int argc, char **argv)
 {
 	t_config	config;
-	//t_mlx		mlx;
 
 	if (argc != 2)
 		print_err("Numero de argumentos invalido");
@@ -40,6 +39,6 @@ int				main(int argc, char **argv)
 	printf("\nPlayer: %d-%d, Obj: %d Ext: %d-%d\n", config.game_player[0], config.game_player[1],
 	config.count_c, config.game_win[0],config.game_win[1]);
 	print_matrix(config.mapa, config.max_lines, config.max_rows);
-	system("leaks so_long");
+	graphic_part(&config);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: agutierr <agutierr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 17:44:13 by agutierr          #+#    #+#             */
-/*   Updated: 2021/06/30 21:15:04 by agutierr         ###   ########.fr       */
+/*   Updated: 2021/07/01 20:02:53 by agutierr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,19 @@ char			**read_map2(int fd, t_config *config)
 
 	config->count_c = 0;
 	i = 0;
-	if (!(map = (char **)ft_calloc(sizeof(char *) * config->max_lines + 1, 0)))
+	if (!(map = (char **)ft_calloc(sizeof(char *) , config->max_lines + 1)))
 		print_err("Malloc ha fallado en read_map2");
 	while (((get_next_line(fd, &line)) > 0))
 	{
-		if (line)
-		{
-			only_map_chars(line);
-			if (ft_strlen(line) != config->max_rows)
-				print_err("El mapa debe ser rectangular y saltos de linea\n");
-			config->count_c += chars_in_str(line, 'C');
-			map[i] = ft_strdup(line);
-			i++;
-		}
-		kill(line);
+		only_map_chars(line);
+		if (ft_strlen(line) != config->max_rows)
+			print_err("El mapa debe ser rectangular y saltos de linea\n");
+		config->count_c += chars_in_str(line, 'C');
+		map[i] = ft_strdup(line);
+		i++;
+		free(line);
 	}
+	free (line);
 	map[i] = NULL;
 	return (map);
 }
@@ -86,6 +84,7 @@ int			**parserico(char **map, t_config *config)
 void		reset_param(t_config *config)
 {
 	config->flag_e = 0;
+	config->flag_c = 0;
 	config->game_player[0] = -1;
 	config->game_player[1] = -1;
 	config->game_win[0] = -1;
@@ -104,11 +103,12 @@ int			**read_map(char *file, t_config *config)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		print_err("Fallo al intentar abrir el archivo .cub");
-	map = read_map2(fd, config);
+	map = read_map2(fd, config); //FALLO AQUI
 	searchmap(config, map); // busco y guardo CEP
 	mapa = parserico(map, config); //paso mapa a int
-	if ((ft_valmap(map, config->game_player[0], config->game_player[1], config)) != 1) //validamos mapa cerrado
-		print_err("El jugador debe tener acceso a la salida\n");
+	ft_valmap(map, config->game_player[0], config->game_player[1], config); //validamos mapa cerrado
+	if (config->flag_e != 1 || config->flag_c < 1)
+		print_err("El jugador debe tener acceso a una sola salida y al menos un consumible\n");
 	close(fd);
 	double_kill(map);
 	return (mapa);
@@ -176,17 +176,16 @@ void			searchmap(t_config *config, char **map)
 		print_err("Para jugar es necesario una posicion para Exit.\n");
 }
 
-int		ft_valmap(char **mapa, int x, int y, t_config *config)
+void		ft_valmap(char **mapa, int x, int y, t_config *config)
 { //X e Y son las coordenadas del jugador.
 	if (mapa[x][y] == 'E')
 		config->flag_e ++;
+	if (mapa[x][y] == 'C')
+		config->flag_c ++;
 	if (x == 0 || y == 0 || y == (ft_strlen(mapa[x]) - 1) ||
 		x == config->max_lines - 1 || y > ft_strlen(mapa[x + 1]) ||
 			y > ft_strlen(mapa[x - 1]))
-	{
-		perror("Error\nMapa abierto");
-		exit(7);
-	}
+		print_err("Mapa abierto");
 	mapa[x][y] = '3';
 	if (mapa[x][y + 1] == '0' || mapa[x][y + 1] == 'C' || mapa[x][y + 1] == 'E'|| mapa[x][y + 1] == ' ')
 		ft_valmap (mapa, x, y + 1 , config);
@@ -196,5 +195,4 @@ int		ft_valmap(char **mapa, int x, int y, t_config *config)
 		ft_valmap (mapa, x + 1 , y, config);
 	if (mapa[x - 1][y] == '0' || mapa[x - 1 ][y] == 'C' || mapa[x - 1][y] == 'E'|| mapa[x - 1][y] == ' ')
 		ft_valmap (mapa, x - 1 , y, config);
-	return (config->flag_e);
 }

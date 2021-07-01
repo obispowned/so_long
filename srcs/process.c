@@ -6,7 +6,7 @@
 /*   By: agutierr <agutierr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 17:41:35 by agutierr          #+#    #+#             */
-/*   Updated: 2021/06/30 21:23:11 by agutierr         ###   ########.fr       */
+/*   Updated: 2021/07/01 19:54:05 by agutierr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,15 @@ t_config		load_file(char *file)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		print_err("Fallo al intentar abrir el archivooo.");
-	while (((ret = get_next_line(fd, &line)) > 0))
+	while ((ret = get_next_line(fd, &line)) == 1)
 	{
-  		if (line)
-		{
-			check_errors(line);
-			config.max_lines++;
-			if (config.max_rows < ft_strlen(line))
-				config.max_rows = ft_strlen(line);
-		}
-		kill(line);
+		check_errors(line);
+		config.max_lines++;
+		if (config.max_rows < ft_strlen(line))
+			config.max_rows = ft_strlen(line);
+		free(line);
 	}
-	//kill(line);
+	free(line);
 	close(fd);
 	return (config);
 }

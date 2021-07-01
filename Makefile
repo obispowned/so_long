@@ -5,6 +5,8 @@ SRCS			=	get_next_line/get_next_line.c\
 					srcs/main.c\
 					srcs/check_err.c\
 					srcs/map.c\
+					srcs/keys.c\
+					srcs/graphic_part.c\
 					srcs/process.c\
 					utils/ft_split.c\
 					utils/printer.c\
@@ -34,7 +36,7 @@ ifeq ($(detected_OS),Linux)
     MLXFLAGS = -lm -lbsd -lmlx -lXext -lX11
 endif
 
-#############################
+#############################FLAGS="-fsanitize=address"
 
 FLAGS			= -g -Wall -Werror -Wextra
 
